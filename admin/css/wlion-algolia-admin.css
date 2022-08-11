@@ -1,0 +1,318 @@
+/* --------------------------------------------------
+// Tabs
+// -------------------------------------------------- */
+.nav-tab {
+  cursor: pointer;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content-active {
+  display: block;
+}
+
+/* --------------------------------------------------
+// Notices
+// -------------------------------------------------- */
+
+#wlion-algolia__notice {
+  display: none;
+  position: relative;
+}
+
+#wlion-algolia__notice .wlion-algolia__notice-close {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #72777c;
+  border: 0;
+}
+
+#wlion-algolia__notice .wlion-algolia__notice-close::before {
+  content: '\f153';
+  background-position: 0 0;
+  display: inline-block;
+  font: normal 16px/20px dashicons;
+  -webkit-font-smoothing: antialiased;
+  vertical-align: bottom;
+}
+
+#wlion-algolia__notice .wlion-algolia__notice-close:hover {
+  color: #c00;
+}
+
+/* --------------------------------------------------
+// Indices view
+// -------------------------------------------------- */
+
+#form-save-notice,
+div[data-tab='all-indices'] .index-settings {
+  display: none;
+}
+div[data-tab='all-indices'] .widefat tr.index-settings .spinner.is-active {
+  float: none;
+  width: 100%;
+  height: 1.5rem;
+  padding: 0;
+  background-position: 50%;
+}
+
+div[data-tab='all-indices'] .widefat tr:not(.index-settings):hover {
+  background-color: #eee;
+}
+
+div[data-tab='all-indices'] .widefat tr.not-current-env {
+  display: none;
+}
+
+div[data-tab='all-indices'] .widefat tr.replica-row td {
+  border-top: 1px solid #eee;
+}
+
+div[data-tab='all-indices'] .widefat td {
+  vertical-align: middle;
+}
+
+div[data-tab='all-indices'] .widefat td.replica-title {
+  padding-left: 2em;
+}
+
+div[data-tab='all-indices'] .widefat tr.index-settings .postbox {
+  position: relative;
+  background-color: #eee;
+  padding: 0 20px;
+  margin: 0 1em 2em;
+}
+
+div[data-tab='all-indices']
+  .widefat
+  tr.index-settings
+  .postbox
+  .postbox__close {
+  position: absolute;
+  top: 0.25em;
+  right: 20px;
+  font-size: 1.75rem;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+div[data-tab='all-indices']
+  .widefat
+  tr.index-settings
+  .postbox
+  .postbox__close:hover {
+  opacity: 0.5;
+  transition: all 150ms ease;
+}
+
+div[data-tab='all-indices']
+  .widefat
+  tr.index-settings
+  .postbox
+  input.large-text {
+  font-family: monospace;
+}
+
+div[data-tab='all-indices']
+  .widefat
+  tr.index-settings
+  .postbox
+  button.push-settings {
+  display: block;
+  margin: 1em 0;
+}
+
+div[data-tab='all-indices']
+  .widefat
+  tr.index-settings
+  .postbox
+  .spinner.is-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-position: 50%;
+  background-color: rgba(255, 255, 255, 0.95);
+  background-size: 2%;
+  z-index: 2;
+}
+
+div[data-tab='all-indices'] .postbox .notice {
+  display: none;
+  margin: 0.5em 0;
+}
+
+div[data-tab='all-indices'] .postbox .notice.inline {
+  display: block;
+}
+
+/* --------------------------------------------------
+// Searchable Posts view
+// -------------------------------------------------- */
+
+div[data-tab='searchable-posts'] .searchable-posts__post-types {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  margin-top: 2em;
+}
+
+div[data-tab='searchable-posts'] .searchable-posts__post-types__settings,
+div[data-tab='searchable-posts'] .searchable-posts__post-types__checkboxes {
+  flex: 0 1 auto;
+  padding-right: 50px;
+  border-right: 1px solid #ccc;
+}
+
+div[data-tab='searchable-posts'] .searchable-posts__post-types__settings {
+  flex: 1 1 auto;
+}
+
+div[data-tab='searchable-posts'] .searchable-posts__post-types__checkboxes {
+  padding-left: 50px;
+}
+
+div[data-tab='searchable-posts'] .searchable-posts__post-types__count {
+  flex: 1 1 auto;
+  position: relative;
+  padding-left: 50px;
+}
+div[data-tab='searchable-posts']
+  .searchable-posts__post-types__amount-container {
+  display: inline-block;
+  height: 2em;
+  width: 50%;
+  position: relative;
+  margin-left: 0.5em;
+}
+
+div[data-tab='searchable-posts']
+  .searchable-posts__post-types__amount-container
+  .spinner {
+  position: absolute;
+  margin: 0;
+  top: 2em;
+  left: 0px;
+  width: 100%;
+  height: 4em;
+  transform: translateY(-50%);
+  background-color: #f1f1f1;
+  background-position: 0 50%;
+  opacity: 1;
+}
+
+div[data-tab='searchable-posts'] .searchable-posts__post-types__btn-container {
+  position: relative;
+  display: block;
+}
+
+div[data-tab='searchable-posts']
+  .searchable-posts__post-types__btn-container
+  .spinner {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1.5em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  margin: 0;
+}
+
+div[data-tab='searchable-posts']
+  .searchable-posts__post-types__settings
+  .form-table
+  th {
+  padding: 0 10px 0 0;
+}
+
+div[data-tab='searchable-posts']
+  .searchable-posts__post-types__settings
+  .form-table
+  td {
+  padding: 0 0 0 10px;
+}
+
+div[data-tab='searchable-posts']
+  .searchable-posts__post-type__checkbox-container {
+  display: block;
+  margin: 1em 0;
+}
+
+div[data-tab='searchable-posts']
+  .searchable-posts__post-type__toggle:checked
+  + .searchable-posts__post-type__label {
+  font-weight: bold;
+}
+
+div[data-tab='searchable-posts'] .index-searchable-posts__note {
+  display: none;
+}
+
+div[data-tab='searchable-posts']
+  button.index-searchable-posts:disabled
+  + .index-searchable-posts__note {
+  display: block;
+}
+
+/* --------------------------------------------------
+// Custom Hooks view
+// -------------------------------------------------- */
+
+div[data-tab='custom-hooks'] .widefat tr.custom-hooks__tr {
+  position: relative;
+  opacity: 1;
+}
+
+div[data-tab='custom-hooks'] .widefat tr.custom-hooks__tr.is-loading {
+  opacity: 0.5;
+}
+
+div[data-tab='custom-hooks'] .widefat td.custom-hooks__action-td {
+  position: relative;
+}
+
+div[data-tab='custom-hooks'] .spinner[data-hook] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-position: 10px 50%;
+  background-color: transparent;
+  opacity: 1;
+  z-index: 2;
+}
+
+div[data-tab='custom-hooks'] button.hook-trigger {
+  visibility: visible;
+}
+
+div[data-tab='custom-hooks'] button.hook-trigger.is-hidden {
+  visibility: hidden;
+}
+
+/* --------------------------------------------------
+// Misc
+// -------------------------------------------------- */
+
+h4.wl-h4 {
+  margin-top: 0;
+  font-size: 1.15em;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5em;
+}
