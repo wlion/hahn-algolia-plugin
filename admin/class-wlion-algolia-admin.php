@@ -527,8 +527,8 @@ class WlionAlgoliaAdmin {
             'public'              => true,
             'exclude_from_search' => false,
         ],
-        'object',
-        'and');
+            'object',
+            'and');
 
         foreach ($exclude_types as $type) {
             unset($post_types[$type]);
@@ -629,7 +629,7 @@ class WlionAlgoliaAdmin {
         }
 
         print json_encode($response);
-        exit();
+        exit;
     }
 
     /**
@@ -713,7 +713,7 @@ class WlionAlgoliaAdmin {
         }
 
         print json_encode($response);
-        exit();
+        exit;
     }
 
     /**
@@ -731,7 +731,7 @@ class WlionAlgoliaAdmin {
         $response['post_types'] = $this->settings->get_searchable_posts_data();
 
         print json_encode($response);
-        exit();
+        exit;
     }
 
     /**
@@ -744,7 +744,7 @@ class WlionAlgoliaAdmin {
         ];
 
         print json_encode($response);
-        exit();
+        exit;
     }
 
     /**
@@ -764,11 +764,11 @@ class WlionAlgoliaAdmin {
             $response['message'] = $this->searchable_posts->push_records_to_algolia($create_settings, $records);
         } catch (Exception $e) {
             var_dump($e);
-            exit();
+            exit;
         }
 
         print json_encode($response);
-        exit();
+        exit;
     }
 
     /**
@@ -797,6 +797,6 @@ class WlionAlgoliaAdmin {
         }
 
         print json_encode($response);
-        exit();
+        exit;
     }
 }

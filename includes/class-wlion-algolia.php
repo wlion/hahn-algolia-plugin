@@ -70,7 +70,7 @@ class WlionAlgolia {
         $this->load_dependencies();
 
         $this->version               = (defined('WLION_ALGOLIA_VERSION')) ? WLION_ALGOLIA_VERSION : '1.0.0';
-        $this->plugin_slug           = 'wlion-algolia';
+        $this->plugin_slug           = 'hahn-algolia';
         $this->custom_hooks_location = get_template_directory() . '/algolia/admin-custom-hooks.php';
 
         $this->initialize_algolia();
@@ -103,7 +103,7 @@ class WlionAlgolia {
     private function initialize_algolia() {
         global $algolia;
 
-        if ($this->settings->get_app_id() and $this->settings->get_admin_api_key()) {
+        if ($this->settings->get_app_id() && $this->settings->get_admin_api_key()) {
             $this->algolia = \Algolia\AlgoliaSearch\SearchClient::create(
                 $this->settings->get_app_id(),
                 $this->settings->get_admin_api_key()
