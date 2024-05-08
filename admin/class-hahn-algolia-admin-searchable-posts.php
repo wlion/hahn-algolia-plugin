@@ -2,11 +2,11 @@
 /**
  * Custom Hooks for Admin-side of the plugin.
  */
-class WlionAlgoliaAdminSearchablePosts {
+class HahnAlgoliaAdminSearchablePosts {
     /**
      * Custom hooks.
      *
-     * @var WlionAlgolia
+     * @var HahnAlgolia
      */
     private $plugin;
 
@@ -20,7 +20,7 @@ class WlionAlgoliaAdminSearchablePosts {
     /**
      * Custom hooks.
      *
-     * @var WlionAlgoliaSettings
+     * @var HahnAlgoliaSettings
      */
     private $settings;
 
@@ -34,14 +34,14 @@ class WlionAlgoliaAdminSearchablePosts {
     /**
      * Custom hooks.
      *
-     * @var WlionAlgoliaHelpers
+     * @var HahnAlgoliaHelpers
      */
     private $helpers;
 
     /**
      * Initialize the class and set its properties.
      */
-    public function __construct(WlionAlgolia $plugin) {
+    public function __construct(HahnAlgolia $plugin) {
         $this->plugin      = $plugin;
         $this->algolia     = $this->plugin->get_algolia_plugin();
         $this->settings    = $this->plugin->get_settings();
@@ -83,7 +83,7 @@ class WlionAlgoliaAdminSearchablePosts {
     public function should_post_type_be_checked($slug) {
         $data = $this->get_searchable_posts_data();
 
-        if (!$data or !count($data)) {
+        if (!$data || !count($data)) {
             return null;
         }
 
@@ -96,8 +96,6 @@ class WlionAlgoliaAdminSearchablePosts {
 
     /**
      * The post index function.
-     *
-     * @param array $data
      *
      * @return void|array
      */
@@ -242,10 +240,10 @@ class WlionAlgoliaAdminSearchablePosts {
         if ($create_settings) {
             // Set default settings
             $update_settings = $client->setSettings([
-                'attributeForDistinct'  => 'post_id',
-                'distinct'              => true,
-                'hitsPerPage'           => 20,
-                'searchableAttributes'  => [
+                'attributeForDistinct' => 'post_id',
+                'distinct'             => true,
+                'hitsPerPage'          => 20,
+                'searchableAttributes' => [
                     'post_title',
                     'unordered(taxonomies)',
                     'post_excerpt',
@@ -294,7 +292,7 @@ class WlionAlgoliaAdminSearchablePosts {
             } while (count($records));
         }
 
-        $response = $index . ' successfully re-indexed.' . ' ' . $response;
+        $response = $index . ' successfully re-indexed. ' . $response;
 
         return $response;
     }
@@ -327,7 +325,7 @@ class WlionAlgoliaAdminSearchablePosts {
     public function on_save_post($post_id, $post, $update) {
         $records = [];
 
-        if ($this->helpers->should_index($post) and $this->should_post_type_be_checked($post->post_type)) {
+        if ($this->helpers->should_index($post) && $this->should_post_type_be_checked($post->post_type)) {
             $record         = $this->create_index_record($post);
             $prepped_record = $this->helpers->prep_content_for_record($record, $post);
 
@@ -354,7 +352,7 @@ class WlionAlgoliaAdminSearchablePosts {
 
         // Very inelegant, but to be sure all 'chunks' are deleted, if present.
         do {
-            array_push($objectIds, (string)"${post_id}-${i}");
+            array_push($objectIds, (string)"{$post_id}-{$i}");
             ++$i;
         } while ($i < 5);
 

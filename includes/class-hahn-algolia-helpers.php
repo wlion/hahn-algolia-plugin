@@ -2,7 +2,7 @@
 /**
  * Helper function class.
  */
-class WlionAlgoliaHelpers {
+class HahnAlgoliaHelpers {
     /**
      * Get post images.
      *
@@ -138,7 +138,7 @@ class WlionAlgoliaHelpers {
             $name = $parent->name;
         }
 
-        if ($parent->parent and ($parent->parent != $parent->term_id) and !in_array($parent->parent, $visited)) {
+        if ($parent->parent && ($parent->parent != $parent->term_id) && !in_array($parent->parent, $visited)) {
             $visited[] = $parent->parent;
             $chain .= $this->get_term_parents($parent->parent, $taxonomy, $separator, $nicename, $visited);
         }
@@ -271,8 +271,6 @@ class WlionAlgoliaHelpers {
     }
 
     /**
-     * @param WP_Post $item
-     *
      * @return bool
      */
     public function should_index($post) {
@@ -280,12 +278,10 @@ class WlionAlgoliaHelpers {
     }
 
     /**
-     * @param WP_Post $item
-     *
      * @return bool
      */
     private function should_index_post(WP_Post $post) {
-        $should_index = 'publish' === $post->post_status and empty($post->post_password);
+        $should_index = 'publish' === $post->post_status && empty($post->post_password);
 
         return (bool)apply_filters('algolia_should_index_searchable_post', $should_index, $post);
     }
@@ -310,7 +306,7 @@ class WlionAlgoliaHelpers {
      */
     public function prep_content_for_record($record, $post) {
         // Turn off WP's autformatting for a sec so we can pull 'unformatted' content..
-        $removed      = remove_filter('the_content', 'wptexturize', 10);
+        $removed = remove_filter('the_content', 'wptexturize', 10);
 
         // ..get the content and allow for hooking-into..
         $post_content = apply_filters('algolia_searchable_post_content', $post->post_content, $post);

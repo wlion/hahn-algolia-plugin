@@ -2,7 +2,7 @@
 /**
  * Settings class to retrieve options from database.
  */
-class WlionAlgoliaSettings {
+class HahnAlgoliaSettings {
     /**
      * The options name to be used in this plugin.
      *
