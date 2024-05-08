@@ -1,7 +1,7 @@
 (($) => {
   $(document).ready(() => {
     let searchablePostTypes = getSearchablePostTypes();
-    const $notice = $('#wlion-algolia__notice');
+    const $notice = $('#hahn-algolia__notice');
 
     /*
      ** Event Handlers
@@ -22,7 +22,7 @@
     });
 
     // Close notice
-    $(document).on('click', '.wlion-algolia__notice-close', () =>
+    $(document).on('click', '.hahn-algolia__notice-close', () =>
       $notice.hide()
     );
 

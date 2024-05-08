@@ -2,7 +2,7 @@
 /**
  * Register all actions and filters for the plugin.
  */
-class WlionAlgoliaLoader {
+class HahnAlgoliaLoader {
     /**
      * The array of actions registered with WordPress.
      *

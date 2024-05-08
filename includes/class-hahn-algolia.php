@@ -3,26 +3,26 @@
 /**
  * The core plugin class.
  */
-class WlionAlgolia {
+class HahnAlgolia {
     /**
      * The loader that's responsible for maintaining and registering all hooks that power
      * the plugin.
      *
-     * @var WlionAlgoliaLoader
+     * @var HahnAlgoliaLoader
      */
     protected $loader;
 
     /**
      * To retrieve plugin settings.
      *
-     * @var WlionAlgoliaSettings
+     * @var HahnAlgoliaSettings
      */
     protected $settings;
 
     /**
      * Helper functions.
      *
-     * @var WlionAlgoliaHelpers
+     * @var HahnAlgoliaHelpers
      */
     protected $helpers;
 
@@ -55,7 +55,7 @@ class WlionAlgolia {
     protected $option_name = 'wl_algolia_';
 
     /**
-     * File path of custom_hooks file in /themes/wlion/.
+     * File path of custom_hooks file in /themes/hahn/.
      *
      * @var string
      */
@@ -69,7 +69,7 @@ class WlionAlgolia {
     public function __construct() {
         $this->load_dependencies();
 
-        $this->version               = (defined('WLION_ALGOLIA_VERSION')) ? WLION_ALGOLIA_VERSION : '1.0.0';
+        $this->version               = (defined('HAHN_ALGOLIA_VERSION')) ? HAHN_ALGOLIA_VERSION : '1.0.0';
         $this->plugin_slug           = 'hahn-algolia';
         $this->custom_hooks_location = get_template_directory() . '/algolia/admin-custom-hooks.php';
 
@@ -81,20 +81,20 @@ class WlionAlgolia {
     /**
      * Load the required dependencies for this plugin.
      *
-     * - WlionAlgoliaLoader. Orchestrates the hooks of the plugin.
-     * - WlionAlgoliaAdmin.  Defines hooks for the admin area.
-     * - WlionAlgoliaPublic. Defines hooks for the public side of the site.
+     * - HahnAlgoliaLoader. Orchestrates the hooks of the plugin.
+     * - HahnAlgoliaAdmin.  Defines hooks for the admin area.
+     * - HahnAlgoliaPublic. Defines hooks for the public side of the site.
      */
     private function load_dependencies() {
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-wlion-algolia-loader.php';
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-wlion-algolia-settings.php';
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-wlion-algolia-helpers.php';
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-wlion-algolia-admin.php';
-        require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-wlion-algolia-public.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-hahn-algolia-loader.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-hahn-algolia-settings.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-hahn-algolia-helpers.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-hahn-algolia-admin.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-hahn-algolia-public.php';
 
-        $this->loader   = new WlionAlgoliaLoader();
-        $this->settings = new WlionAlgoliaSettings($this->get_option_name());
-        $this->helpers  = new WlionAlgoliaHelpers();
+        $this->loader   = new HahnAlgoliaLoader();
+        $this->settings = new HahnAlgoliaSettings($this->get_option_name());
+        $this->helpers  = new HahnAlgoliaHelpers();
     }
 
     /**
@@ -104,7 +104,7 @@ class WlionAlgolia {
         global $algolia;
 
         if ($this->settings->get_app_id() && $this->settings->get_admin_api_key()) {
-            $this->algolia = \Algolia\AlgoliaSearch\SearchClient::create(
+            $this->algolia = Algolia\AlgoliaSearch\SearchClient::create(
                 $this->settings->get_app_id(),
                 $this->settings->get_admin_api_key()
             );
@@ -119,7 +119,7 @@ class WlionAlgolia {
      * Register admin-related hooks.
      */
     private function define_admin_hooks() {
-        $plugin_admin = new WlionAlgoliaAdmin($this);
+        $plugin_admin = new HahnAlgoliaAdmin($this);
 
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_admin_style');
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_admin_script');
@@ -133,7 +133,7 @@ class WlionAlgolia {
      * Register public-related hooks.
      */
     private function define_public_hooks() {
-        $plugin_public = new WlionAlgoliaPublic($this);
+        $plugin_public = new HahnAlgoliaPublic($this);
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_util_script');
         $this->loader->add_action('wp_head', $plugin_public, 'localize_vars');
     }
@@ -157,7 +157,7 @@ class WlionAlgolia {
     /**
      * Loader class reference.
      *
-     * @return WlionAlgoliaLoader
+     * @return HahnAlgoliaLoader
      */
     public function get_loader() {
         return $this->loader;
@@ -166,7 +166,7 @@ class WlionAlgolia {
     /**
      * Helpers class reference.
      *
-     * @return WlionAlgoliaHelpers
+     * @return HahnAlgoliaHelpers
      */
     public function get_helpers() {
         return $this->helpers;
@@ -184,7 +184,7 @@ class WlionAlgolia {
     /**
      * Settings class reference.
      *
-     * @return WlionAlgoliaSettings
+     * @return HahnAlgoliaSettings
      */
     public function get_settings() {
         return $this->settings;

@@ -1,4 +1,4 @@
-=== Wlion: Algolia Integration ===
+=== Hahn: Algolia Integration ===
 
 A front-end solution to configure Algolia indices and provide a wrapper for Algolia.
 
@@ -8,4 +8,4 @@ Since Algolia has abandoned support for their Wordpress plugin, we went ahead an
 
 == Custom Hooks ==
 
-The plugin has a *Custom Hooks* section to execute custom user functions. By default, the plugin will be looking for a `admin-custom-hooks.php` in `/wp-content/themes/wlion/algolia`; add functions to this array and follow the format outlined in this file.
+The plugin has a *Custom Hooks* section to execute custom user functions. By default, the plugin will be looking for a `admin-custom-hooks.php` in `/wp-content/themes/hahn/algolia`; add functions to this array and follow the format outlined in this file.

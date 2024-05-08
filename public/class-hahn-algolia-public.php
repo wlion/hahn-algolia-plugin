@@ -2,20 +2,20 @@
 /**
  * The public-facing functionality of the plugin.
  */
-class WlionAlgoliaPublic {
+class HahnAlgoliaPublic {
     /**
      * This plugin.
      *
-     * @var WlionAlgolia
+     * @var HahnAlgolia
      */
     private $plugin;
 
     /**
      * Initialize class and set template loader listener.
      *
-     * @param WlionAlgolia
+     * @param HahnAlgolia
      */
-    public function __construct(WlionAlgolia $plugin) {
+    public function __construct(HahnAlgolia $plugin) {
         $this->plugin = $plugin;
 
         // Listen for native templates to override search.php with /agolia/instantsearch.php
@@ -35,8 +35,8 @@ class WlionAlgoliaPublic {
             'query'          => isset($_GET['s']) ? wp_unslash($_GET['s']) : '',
             'indices'        => [
                 'searchable_posts' => [
-                    'name'    => $settings->get_index_prefix() . 'searchable_posts',
-                    'id'      => 'searchable_posts',
+                    'name' => $settings->get_index_prefix() . 'searchable_posts',
+                    'id'   => 'searchable_posts',
                 ],
             ],
         ];
@@ -54,9 +54,7 @@ class WlionAlgoliaPublic {
     }
 
     /**
-     * Load template in /themes/wlion/algolia/ to override default search page.
-     *
-     * @param mixed $template
+     * Load template in /themes/hahn/algolia/ to override default search page.
      *
      * @return string
      */

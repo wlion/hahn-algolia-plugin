@@ -2,11 +2,11 @@
 /**
  * Custom Hooks for Admin-side of the plugin.
  */
-class WlionAlgoliaAdminCustomHooks {
+class HahnAlgoliaAdminCustomHooks {
     /**
      * Custom hooks.
      *
-     * @var WlionAlgolia
+     * @var HahnAlgolia
      */
     private $plugin;
 
@@ -20,7 +20,7 @@ class WlionAlgoliaAdminCustomHooks {
     /**
      * Initialize the class and set its properties.
      */
-    public function __construct(WlionAlgolia $plugin) {
+    public function __construct(HahnAlgolia $plugin) {
         $this->plugin       = $plugin;
         $this->custom_hooks = $this->get_custom_hooks_in_theme_folder();
     }
@@ -35,7 +35,7 @@ class WlionAlgoliaAdminCustomHooks {
     }
 
     /**
-     * Get Custom Hooks from theme directory ('/wlion/algolia/admin-custom-hooks.php').
+     * Get Custom Hooks from theme directory ('/hahn/algolia/admin-custom-hooks.php').
      *
      * @return array
      */

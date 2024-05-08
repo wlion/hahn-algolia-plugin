@@ -2,11 +2,11 @@
 /**
  * Admin-specific side of the plugin.
  */
-class WlionAlgoliaAdmin {
+class HahnAlgoliaAdmin {
     /**
      * This plugin.
      *
-     * @var WlionAlgolia
+     * @var HahnAlgolia
      */
     private $plugin;
 
@@ -48,21 +48,21 @@ class WlionAlgoliaAdmin {
     /**
      * Plugin version.
      *
-     * @var WlionAlgoliaHelpers
+     * @var HahnAlgoliaHelpers
      */
     private $helpers;
 
     /**
      * Custom hooks for the admin side of the plugin.
      *
-     * @var WlionAlgoliaAdminCustomHooks
+     * @var HahnAlgoliaAdminCustomHooks
      */
     private $custom_hooks;
 
     /**
      * Custom hooks for the admin side of the plugin.
      *
-     * @var WlionAlgoliaAdminSearchablePosts
+     * @var HahnAlgoliaAdminSearchablePosts
      */
     private $searchable_posts;
 
@@ -74,9 +74,16 @@ class WlionAlgoliaAdmin {
     private $all_indices = [];
 
     /**
+     * Settings.
+     *
+     * @var HahnAlgoliaSettings
+     */
+    private $settings;
+
+    /**
      * Initialize the class and set its properties.
      *
-     * @param WlionAlgolia $plugin
+     * @param HahnAlgolia $plugin
      */
     public function __construct($plugin) {
         if (is_admin()) {
@@ -108,14 +115,14 @@ class WlionAlgoliaAdmin {
      * Register admin css.
      */
     public function enqueue_admin_style() {
-        wp_enqueue_style($this->plugin_slug, plugin_dir_url(__FILE__) . 'css/wlion-algolia-admin.css', [], $this->version, 'all');
+        wp_enqueue_style($this->plugin_slug, plugin_dir_url(__FILE__) . 'css/hahn-algolia-admin.css', [], $this->version, 'all');
     }
 
     /**
      * Register admin js.
      */
     public function enqueue_admin_script() {
-        wp_enqueue_script($this->plugin_slug, plugin_dir_url(__FILE__) . 'js/wlion-algolia-admin.js', ['jquery'], $this->version, false);
+        wp_enqueue_script($this->plugin_slug, plugin_dir_url(__FILE__) . 'js/hahn-algolia-admin.js', ['jquery'], $this->version, false);
 
         $admin_options = [
             'ajax_url' => admin_url('admin-ajax.php'),
@@ -152,16 +159,16 @@ class WlionAlgoliaAdmin {
      * Load Custom Hooks class, used for 'Custom Hooks' section of plugin in admin.
      */
     public function load_admin_custom_hooks() {
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-wlion-algolia-admin-custom-hooks.php';
-        $this->custom_hooks = new WlionAlgoliaAdminCustomHooks($this->plugin);
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-hahn-algolia-admin-custom-hooks.php';
+        $this->custom_hooks = new HahnAlgoliaAdminCustomHooks($this->plugin);
     }
 
     /**
      * Load Searchable Posts class, used for 'Searchable Posts' section of plugin in admin.
      */
     public function load_admin_searchable_posts() {
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-wlion-algolia-admin-searchable-posts.php';
-        $this->searchable_posts = new WlionAlgoliaAdminSearchablePosts($this->plugin);
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-hahn-algolia-admin-searchable-posts.php';
+        $this->searchable_posts = new HahnAlgoliaAdminSearchablePosts($this->plugin);
     }
 
     /**
@@ -169,8 +176,8 @@ class WlionAlgoliaAdmin {
      */
     public function add_options_page() {
         add_options_page(
-            'Wlion: Algolia Settings',
-            'Wlion: Algolia',
+            'Hahn: Algolia Settings',
+            'Hahn: Algolia',
             'manage_options',
             $this->plugin_slug,
             [$this, 'display_options_page']
@@ -181,7 +188,7 @@ class WlionAlgoliaAdmin {
      * Outputs admin page.
      */
     public function display_options_page() {
-        include_once 'partials/wlion-algolia-admin-display.php';
+        include_once 'partials/hahn-algolia-admin-display.php';
     }
 
     /**
@@ -234,7 +241,7 @@ class WlionAlgoliaAdmin {
                 $this->option_name . $field['slug'],  // ID
                 $field['label'],                      // Title
                 [$this, $render_function],            // Callback function that renders field
-                $this->plugin_slug,                   // Page slug ('wlion-algolia')
+                $this->plugin_slug,                   // Page slug ('hahn-algolia')
                 $this->option_name . 'settings',      // Section name this should live in
                 [
                     'label_for' => $this->option_name . $field['slug'], // Extra args
@@ -281,14 +288,12 @@ class WlionAlgoliaAdmin {
      * @return void
      */
     public function text_field_render($field) { ?>
-        <input
-            type="<?= $field['type']; ?>"
-            name="<?= $field['label_for']; ?>"
-            id="<?= $field['label_for']; ?>"
-            class="regular-text"
-            value="<?= $this->get_data($field['slug']); ?>"
-        />
-    <?php }
+<input type="<?= $field['type']; ?>"
+    name="<?= $field['label_for']; ?>"
+    id="<?= $field['label_for']; ?>"
+    class="regular-text"
+    value="<?= $this->get_data($field['slug']); ?>" />
+<?php }
 
     /**
      * Render 'Index Prefix' text form field w/ description.
@@ -298,23 +303,22 @@ class WlionAlgoliaAdmin {
      * @return void
      */
     public function text_field_index_prefix_render($field) { ?>
-        <input
-            type="<?= $field['type']; ?>"
-            name="<?= $field['label_for']; ?>"
-            id="<?= $field['label_for']; ?>"
-            class="regular-text"
-            value="<?= $this->get_data($field['slug']); ?>"
-        />
-        <br>
-        <p class="description">
-            This prefix will be prepended to your indices.
-            <?php $prefix = $this->get_data($field['slug']); ?>
-            <?php if (!strpos($prefix, $this->environment)): ?>
-                <br>
-                <em style="color:red;">Prefix should contain '<strong>_<?= $this->environment; ?>_</strong>'.</em>
-            <?php endif; ?>
-        </p>
-    <?php }
+<input type="<?= $field['type']; ?>"
+    name="<?= $field['label_for']; ?>"
+    id="<?= $field['label_for']; ?>"
+    class="regular-text"
+    value="<?= $this->get_data($field['slug']); ?>" />
+<br>
+<p class="description">
+    This prefix will be prepended to your indices.
+    <?php $prefix = $this->get_data($field['slug']); ?>
+    <?php if (!strpos($prefix, $this->environment)): ?>
+    <br>
+    <em style="color:red;">Prefix should contain
+        '<strong>_<?= $this->environment; ?>_</strong>'.</em>
+    <?php endif; ?>
+</p>
+<?php }
 
     /**
      * Get Options data.
@@ -340,8 +344,6 @@ class WlionAlgoliaAdmin {
 
     /**
      * Test API key to make sure it's valid.
-     *
-     * @param string $key
      *
      * @return bool
      */
@@ -800,3 +802,4 @@ class WlionAlgoliaAdmin {
         exit;
     }
 }
+?>

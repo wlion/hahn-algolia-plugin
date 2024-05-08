@@ -17,12 +17,12 @@
 // Notices
 // -------------------------------------------------- */
 
-#wlion-algolia__notice {
+#hahn-algolia__notice {
   display: none;
   position: relative;
 }
 
-#wlion-algolia__notice .wlion-algolia__notice-close {
+#hahn-algolia__notice .hahn-algolia__notice-close {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -34,7 +34,7 @@
   border: 0;
 }
 
-#wlion-algolia__notice .wlion-algolia__notice-close::before {
+#hahn-algolia__notice .hahn-algolia__notice-close::before {
   content: '\f153';
   background-position: 0 0;
   display: inline-block;
@@ -43,7 +43,7 @@
   vertical-align: bottom;
 }
 
-#wlion-algolia__notice .wlion-algolia__notice-close:hover {
+#hahn-algolia__notice .hahn-algolia__notice-close:hover {
   color: #c00;
 }
 
